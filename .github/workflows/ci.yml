@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: master
+  schedule:
+    - cron: 0 0 * * *
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        php_version: [72, 74]
+        stage: ['sso', 'srv']
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        env:
+          PHP_VERSION: ${{ matrix.php_version }}
+          STAGE: ${{ matrix.stage }}
+        run: |
+          export TAG_VERSION=${PHP_VERSION:0:1}.${PHP_VERSION:1:1}-${STAGE}
+          docker build . --file ${{ matrix.php_version }}Dockerfile-${{ matrix.stage }} --tag chinayin/php-fpm-deploy:${TAG_VERSION}
+          docker image ls
+
+      - name: Push image to Docker hub
+        if: success()
+        env:
+          PHP_VERSION: ${{ matrix.php_version }}
+          STAGE: ${{ matrix.stage }}
+        run: |
+          export TAG_VERSION=${PHP_VERSION:0:1}.${PHP_VERSION:1:1}-${STAGE}
+          echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
+          docker push chinayin/php-fpm-deploy:${TAG_VERSION}
+          docker logout
