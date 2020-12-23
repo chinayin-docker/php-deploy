@@ -19,7 +19,7 @@ jobs:
           IMAGE: ${{ matrix.image }}
         run: |
           export TAG_VERSION=${IMAGE}
-          docker build . --file Dockerfile-${{ matrix.image }} --tag chinayin/php-fpm-deploy:${TAG_VERSION}
+          docker build . --file Dockerfile/Dockerfile-${{ matrix.image }} --tag chinayin/php-fpm-deploy:${TAG_VERSION}
           docker image ls
 
       - name: Push image to Docker hub
