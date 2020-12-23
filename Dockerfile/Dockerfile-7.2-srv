@@ -14,6 +14,6 @@ RUN set -eux \
     && mkdir -p /usr/share/man/man1 \
     && apt-get install -y --no-install-recommends pdftk \
     ## Clean up
-    && pecl clear-cache && apt-get clean && rm -rf /var/lib/apt/lists/* /var/cache/apk/* /tmp/* /var/tmp/* && rm /var/log/lastlog /var/log/faillog \
+    && pecl clear-cache && apt-get clean && rm -rf /var/lib/apt/lists/* /var/cache/apk/* /tmp/* /var/tmp/* && rm -f /var/log/lastlog /var/log/faillog \
     ## Check PHP version
     && php -v | head -n 1 | grep -q "PHP ${PHP_VERSION}"
