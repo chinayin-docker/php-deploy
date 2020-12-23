@@ -8,7 +8,7 @@ FROM chinayin/php-fpm:7.2
 ENV DEPLOY_IMAGE_VERSION="2020-12-23 14:37"
 
 RUN set -eux \
-    && apt-get update && apt-get upgrade -y && pecl channel-update pecl.php.net \
+    && apt-get update && apt-get upgrade -y && pecl channel-update pecl.php.net && mkdir -p /tmp/pear/cache \
     ## Install pdftk (https://www.pdflabs.com/docs/install-pdftk-on-redhat-or-centos)
     ## fix error processing package openjdk-11-jre-headless:amd64
     && mkdir -p /usr/share/man/man1 \

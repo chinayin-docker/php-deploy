@@ -8,7 +8,7 @@ FROM chinayin/php-fpm:7.2
 ENV DEPLOY_IMAGE_VERSION="2020-12-23 14:37"
 
 RUN set -eux \
-    && apt-get update && apt-get upgrade -y && pecl channel-update pecl.php.net \
+    && apt-get update && apt-get upgrade -y && pecl channel-update pecl.php.net && mkdir -p /tmp/pear/cache \
     ## Install gd
     && apt-get install -y --no-install-recommends libjpeg-dev libpng-dev libwebp-dev libfreetype6-dev \
     && docker-php-ext-configure gd --prefix=/usr --with-gd --with-webp-dir --with-jpeg-dir --with-png-dir --with-zlib-dir --with-freetype-dir \
