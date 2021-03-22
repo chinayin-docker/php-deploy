@@ -4,30 +4,33 @@ on:
   push:
     branches: master
   schedule:
-    - cron: 0 0 * * *
+    - cron: 0 1 * * *
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        image: ['7.2-srv', '7.2-sso']
+        include:
+          - major: 7.2
+            variant: srv
+          - major: 7.2
+            variant: sso
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        env:
-          IMAGE: ${{ matrix.image }}
+        working-directory: ${{ matrix.major }}/${{ matrix.variant }}
         run: |
-          export TAG_VERSION=${IMAGE}
-          docker build . --file Dockerfile/Dockerfile-${{ matrix.image }} --tag chinayin/php-fpm-deploy:${TAG_VERSION}
-          docker image ls
-
+          docker build \
+          --pull \
+          --no-cache \
+          --file Dockerfile \
+          --tag chinayin/php-deploy:${{ matrix.major }}-${{ matrix.variant }} \
+          .
       - name: Push image to Docker hub
         if: success()
-        env:
-          IMAGE: ${{ matrix.image }}
+        working-directory: ${{ matrix.major }}/${{ matrix.variant }}
         run: |
-          export TAG_VERSION=${IMAGE}
-          echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
-          docker push chinayin/php-fpm-deploy:${TAG_VERSION}
+          echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
+          docker push chinayin/php-deploy:${{ matrix.major }}-${{ matrix.variant }}
           docker logout
