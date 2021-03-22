@@ -8,12 +8,5 @@
 
 ### Supported tags and respective `Dockerfile` links
 
-![](https://img.shields.io/docker/v/chinayin/php/7.2-fpm)
-![](https://img.shields.io/docker/v/chinayin/php/7.2-cli)
-![](https://img.shields.io/docker/v/chinayin/php/7.2-fpm-slim)
-![](https://img.shields.io/docker/v/chinayin/php/7.2-cli-slim)
-
-![](https://img.shields.io/docker/v/chinayin/php/7.4-fpm)
-![](https://img.shields.io/docker/v/chinayin/php/7.4-cli)
-![](https://img.shields.io/docker/v/chinayin/php/7.4-fpm-slim)
-![](https://img.shields.io/docker/v/chinayin/php/7.4-cli-slim)
+![](https://img.shields.io/docker/v/chinayin/php-deploy/7.2-srv)
+![](https://img.shields.io/docker/v/chinayin/php-deploy/7.2-sso)
