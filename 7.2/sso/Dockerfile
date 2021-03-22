@@ -11,6 +11,9 @@ ENV CYD_APP_NAME="7.2-fpm-sso" \
     CYD_IMAGE_VERSION="v2021-03-22 19:31"
 
 RUN set -eux \
+    ## Install PHP opcache
+    && docker-php-ext-configure opcache --enable-opcache && docker-php-ext-install -j$(nproc) opcache \
+    && echo "opcache.enable=0" >> "$PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini" \
     ## Install gd
     && install_packages libjpeg-dev libpng-dev libwebp-dev libfreetype6-dev \
     && docker-php-ext-configure gd --prefix=/usr --with-gd --with-webp-dir --with-jpeg-dir --with-png-dir --with-zlib-dir --with-freetype-dir \
