@@ -11,13 +11,11 @@ ENV CYD_APP_NAME="7.2-fpm-sso" \
     CYD_IMAGE_VERSION="v2021-03-22 19:31"
 
 RUN set -eux \
-    && pecl channel-update pecl.php.net && mkdir -p /tmp/pear/cache \
     ## Install gd
     && install_packages libjpeg-dev libpng-dev libwebp-dev libfreetype6-dev \
     && docker-php-ext-configure gd --prefix=/usr --with-gd --with-webp-dir --with-jpeg-dir --with-png-dir --with-zlib-dir --with-freetype-dir \
     && docker-php-ext-install -j$(nproc) gd \
     ## Clean up
-    && pecl clear-cache \
     && rm -rf /tmp/* /var/tmp/* \
     && rm -f /var/log/lastlog /var/log/faillog \
     ## Check PHP version
