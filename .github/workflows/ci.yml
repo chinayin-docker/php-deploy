@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: master
+    branches: [ master ]
   schedule:
     - cron: 0 1 * * *
 
@@ -17,13 +17,15 @@ jobs:
           - major: 7.2
             variant: sso
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Build the Docker image
         working-directory: ${{ matrix.major }}/${{ matrix.variant }}
+        env:
+          DOCKER_BUILDKIT: 1
         run: |
           docker build \
           --pull \
-          --no-cache \
           --file Dockerfile \
           --tag chinayin/php-deploy:${{ matrix.major }}-${{ matrix.variant }} \
           .
