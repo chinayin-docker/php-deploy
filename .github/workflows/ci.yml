@@ -15,6 +15,8 @@ jobs:
             variant: srv
           - major: 7.2
             variant: sso
+          - major: 7.4
+            variant: crm
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
