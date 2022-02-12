@@ -4,11 +4,9 @@
 #--------------------------------------------------------------------------
 #
 
-FROM chinayin/php:7.2-fpm-slim
+ARG PHP_VERSION=7.2.34
+FROM chinayin/php:${PHP_VERSION}-fpm-slim
 LABEL maintainer="chinayin <whereismoney@qq.com>"
-
-ENV CYD_APP_NAME="7.2-fpm-sso" \
-    CYD_IMAGE_VERSION="v2021-03-22 19:31"
 
 RUN set -eux \
     ## Install PHP opcache

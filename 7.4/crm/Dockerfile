@@ -4,11 +4,9 @@
 #--------------------------------------------------------------------------
 #
 
-FROM chinayin/php:7.4-fpm-slim
+ARG PHP_VERSION=7.4.26
+FROM chinayin/php:${PHP_VERSION}-fpm-slim
 LABEL maintainer="chinayin <whereismoney@qq.com>"
-
-ENV CYD_APP_NAME="7.4-fpm-crm" \
-    CYD_IMAGE_VERSION="v2021-06-16 14:13"
 
 RUN set -eux \
     ## Install PHP opcache

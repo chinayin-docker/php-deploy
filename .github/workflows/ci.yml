@@ -25,6 +25,7 @@ jobs:
         run: |
           echo ::set-output name=repository::${GITHUB_ACTOR}/$(basename ${GITHUB_REPOSITORY})
           echo ::set-output name=workdir::${{ matrix.major }}/${{ matrix.variant }}
+          echo ::set-output name=version::$(grep 'PHP_VERSION=' Dockerfile | awk -F '[=.]' '{print $2"."$3"."$4}')
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -43,3 +44,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: |
             ${{ steps.vars.outputs.repository }}:${{ matrix.major }}-${{ matrix.variant }}
+            ${{ steps.vars.outputs.repository }}:${{ steps.vars.outputs.version }}-${{ matrix.variant }}
