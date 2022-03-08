@@ -11,7 +11,7 @@ LABEL maintainer="chinayin <whereismoney@qq.com>"
 RUN set -eux \
     ## Install gd
     && install_packages libjpeg-dev libpng-dev libwebp-dev libfreetype6-dev \
-    && docker-php-ext-configure gd --prefix=/usr --with-gd --with-webp-dir --with-jpeg-dir --with-png-dir --with-zlib-dir --with-freetype-dir \
+    && docker-php-ext-configure gd --prefix=/usr --enable-gd --with-webp --with-jpeg --with-freetype \
     && docker-php-ext-install -j$(nproc) gd \
     ## Install pdftk (https://www.pdflabs.com/docs/install-pdftk-on-redhat-or-centos)
     ## fix error processing package openjdk-11-jre-headless:amd64
