@@ -1,10 +1,10 @@
 #
 #--------------------------------------------------------------------------
-# php 7.2 srv
+# php 7.4 srv
 #--------------------------------------------------------------------------
 #
 
-ARG PHP_VERSION=7.2.34
+ARG PHP_VERSION=7.4.28
 FROM chinayin/php:${PHP_VERSION}-fpm-slim
 LABEL maintainer="chinayin <whereismoney@qq.com>"
 
