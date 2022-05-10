@@ -27,6 +27,10 @@ RUN set -eux \
     && docker-php-ext-configure swoole --enable-swoole-json --enable-http2 --enable-swoole-curl \
     && docker-php-ext-install -j$(nproc) swoole \
   ) \
+  ## install supervisord \
+  && ( \
+    install_packages supervisor \
+  ) \
   ## Clean up
   && ( \
     docker-php-source delete \
