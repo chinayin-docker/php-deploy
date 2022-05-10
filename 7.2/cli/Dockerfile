@@ -40,3 +40,5 @@ RUN set -eux \
   ) \
   ## Check PHP version
   && php -v
+
+WORKDIR /var/www
