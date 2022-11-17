@@ -12,10 +12,6 @@ jobs:
       matrix:
         include:
           - major: 7.2
-            variant: srv
-          - major: 7.2
-            variant: sso
-          - major: 7.2
             variant: cli
           - major: 7.4
             variant: crm
@@ -32,9 +28,9 @@ jobs:
         id: vars
         working-directory: ${{ matrix.major }}/${{ matrix.variant }}
         run: |
-          echo ::set-output name=repository::${GITHUB_ACTOR}/$(basename ${GITHUB_REPOSITORY})
-          echo ::set-output name=workdir::${{ matrix.major }}/${{ matrix.variant }}
-          echo ::set-output name=version::$(grep 'PHP_VERSION=' Dockerfile | awk -F '[=.]' '{print $2"."$3"."$4}')
+          echo "repository=${GITHUB_ACTOR}/$(basename ${GITHUB_REPOSITORY})" >> $GITHUB_OUTPUT
+          echo "version=$(grep 'PHP_VERSION=' Dockerfile | awk -F '[=.]' '{print $2"."$3"."$4}')" >> $GITHUB_OUTPUT
+          echo "workdir=${{ matrix.major }}/${{ matrix.variant }}" >> $GITHUB_OUTPUT
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
