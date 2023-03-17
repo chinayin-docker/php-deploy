@@ -16,6 +16,8 @@ jobs:
           - major: 7.4
             variant: cli
           - major: 7.4
+            variant: cli-imap
+          - major: 7.4
             variant: crm
           - major: 7.4
             variant: srv
