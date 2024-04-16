@@ -21,6 +21,12 @@ jobs:
             variant: srv
           - major: 7.4
             variant: sso
+          - major: 8.2
+            variant: cli
+          - major: 8.2
+            variant: cli-imagick
+          - major: 8.3
+            variant: cli
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
