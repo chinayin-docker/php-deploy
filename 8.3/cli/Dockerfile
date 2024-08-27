@@ -20,7 +20,7 @@ RUN set -eux \
   && docker-php-source extract \
   ## ext-swoole
   && ( \
-    pecl bundle -d /usr/src/php/ext swoole-5.1.2 \
+    pecl bundle -d /usr/src/php/ext swoole-5.1.4 \
     && docker-php-ext-configure swoole --enable-openssl --enable-swoole-curl \
     && docker-php-ext-install -j$(nproc) swoole \
   ) \

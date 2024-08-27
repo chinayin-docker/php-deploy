@@ -23,7 +23,7 @@ RUN set -eux \
   && docker-php-ext-install -j$(nproc) gd \
   ## ext-swoole
   && ( \
-    pecl bundle -d /usr/src/php/ext swoole-4.8.12 \
+    pecl bundle -d /usr/src/php/ext swoole-4.8.13 \
     && docker-php-ext-configure swoole --enable-swoole-json --enable-http2 --enable-swoole-curl \
     && docker-php-ext-install -j$(nproc) swoole \
   ) \
