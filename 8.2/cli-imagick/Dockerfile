@@ -12,7 +12,7 @@ RUN set -eux \
   ## install all required dependencies
   && install_packages \
     # swoole
-    libcurl4-openssl-dev \
+    libcurl4-openssl-dev libbrotli-dev \
     # imagick
     libjpeg-dev libpng-dev libgif-dev libwebp-dev libtiff-dev libfreetype6-dev librsvg2-dev libheif-dev ghostscript libltdl-dev \
   ## temp directory

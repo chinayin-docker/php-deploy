@@ -12,7 +12,7 @@ RUN set -eux \
   ## install all required dependencies
   && install_packages \
     # swoole
-    libcurl4-openssl-dev \
+    libcurl4-openssl-dev libbrotli-dev \
   ## temp directory
   && temp_dir=$(mktemp -d) \
   ## install extensions
