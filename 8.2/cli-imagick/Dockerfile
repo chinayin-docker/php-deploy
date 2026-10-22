@@ -4,7 +4,7 @@
 #--------------------------------------------------------------------------
 #
 
-ARG PHP_VERSION=8.2.16
+ARG PHP_VERSION=8.2.35
 FROM chinayin/php:${PHP_VERSION}-cli-slim
 LABEL maintainer="chinayin <whereismoney@qq.com>"
 
